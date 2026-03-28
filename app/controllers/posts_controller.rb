@@ -11,7 +11,14 @@ class PostsController < ApplicationController
   end
 
   def create 
-    @post = Post.new(post_params)
+    # devise gem gives us 'current_user' so we can use it here
+    @post = current_user.posts.build(post_params)
+
+    if @post.save
+      redirect_to posts_path
+    else 
+      render :new
+    end
   end
 
   private
