@@ -1,0 +1,12 @@
+<h1>List of all posts</h1>
+
+<% @posts.each do |post| %>
+  <div>
+    <h3><%= post.title %></h3>
+    <p><%= post.body %></p>
+
+    <% if user_signed_in? %>
+      <p>written by <%= post.user.email %></p><br><br>
+    <% end %>
+  </div>  
+<% end %>
